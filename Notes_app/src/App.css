@@ -26,18 +26,40 @@ label{
 form{
   text-align: center;
 }
+form button{
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+form button:hover{
+  background-color: #1cff1c;
+  color: black;
+}
+
 h1 {
   text-align: center;
   display: flex;
   height: 40px;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgb(164, 164, 164));
+  background-image: linear-gradient(rgb(216, 216, 216));
+}
+.hedding{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 h2{
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   margin: 20px;
+  border: solid #ccc;
+  border-radius: 5px;
+  width: 12vw;
+  background-color: #c8c8c8;
 }
 input[type="text"]{
 
@@ -53,4 +75,85 @@ textarea{
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
+}
+.notes-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card{
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: #e4e4e4;
+  position: relative;
+}
+.card:hover{
+  background-color: #ffffff;
+  box-shadow:  0 6px 12px rgba(255, 0, 0, 0.2);
+}
+
+.del{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  }
+.del:hover{
+  color: red;
+  
+}
+
+.title{
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+.desc{
+  font-size: 1rem;
+  color: #555;
+}
+
+.no-notes{
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  height: 50px;
+  width: 32vw;
+  background-color: #000000;
+}
+.no-notes:hover{
+  background-color: #ffffff;
+  color: black;
+  border:  0.5px solid #ccc;
+  box-shadow:  0 6px 12px rgba(255, 0, 0, 0.2);
+
+}
+
+.footer-spacer{
+  height: 60px; /* Adjust this value based on the height of your footer */
+}
+
+.footer{
+  text-align: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  margin-top: 20px;
+  position: fixed; 
+  width: 100%;
+  bottom: 0;
+  font-weight: bold;
 }

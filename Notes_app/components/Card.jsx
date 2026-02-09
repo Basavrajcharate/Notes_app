@@ -1,9 +1,14 @@
 import React from 'react'
+import { TiDelete } from "react-icons/ti";
 
-const Card = ({ title, desc }) => {
+const Card = ({ title, desc, deleteNote }) => {
   return (
     <div className="card">
-     Title is {title} and description is {desc}
+        <div className="del" onClick={deleteNote}>
+            <TiDelete />
+        </div>
+        <div className="title">Title:- {title}</div>
+        <div className="desc">Description:- {desc}</div>
     </div>
   )
 }

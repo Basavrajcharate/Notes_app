@@ -1,17 +1,55 @@
 import './App.css'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
-import { useState } from 'react'
+import Footer from '../components/Footer'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [notes, setNotes] = useState([])
   const [currentNote, setCurrentNote] = useState({ title: '', desc: '' })
 
+  const createNoteId = () => {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID()
+    }
+    return `${Date.now()}-${Math.random().toString(16).slice(2)}`
+  }
+
+  useEffect(() => {
+    document.title = "NoteX App"  
+    const localNotes = localStorage.getItem('notes')
+    if(localNotes){
+      const parsed = JSON.parse(localNotes)
+      const normalized = Array.isArray(parsed)
+        ? parsed.map((note) => (note?.id ? note : { ...note, id: createNoteId() }))
+        : []
+
+      setNotes(normalized)
+
+      const needsMigration = Array.isArray(parsed) && parsed.some((note) => !note?.id)
+      if (needsMigration) {
+        localStorage.setItem('notes', JSON.stringify(normalized))
+      }
+    }
+  }, [])
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    setNotes([...notes, currentNote])
+    const newNote = { id: createNoteId(), ...currentNote }
+    const updatedNotes = [...notes, newNote]
+    setNotes(updatedNotes)
     setCurrentNote({ title: '', desc: '' })
+    localStorage.setItem('notes', JSON.stringify(updatedNotes))
   }
+
+  const deleteNote = (id) => {
+    const updatedNotes = notes.filter((item) => item.id !== id)
+    setNotes(updatedNotes)
+    localStorage.setItem('notes', JSON.stringify(updatedNotes))
+  }
+
   const handleChange = (e) => {
     setCurrentNote({...currentNote, [e.target.name]: e.target.value})
   }
@@ -21,7 +59,8 @@ function App() {
       <Navbar />
       <main>
         <h1>Welcome to NoteX</h1>
-        <h2>Create your Note</h2>
+        <div className='hedding'><h2>Create your Note</h2></div>
+        
 
         <form  onSubmit={handleSubmit}>
           <div>
@@ -38,12 +77,18 @@ function App() {
         </form>
       </main>
       <section>
-        <h2>Your Notes</h2>
-        {notes && notes.map(note => {
-          return <Card key={note.title} title={note.title} desc={note.desc}/>
-        })}
-
+        <div className='hedding'><h2>Your Notes</h2></div>
+        <div className='notes-container'>
+          {notes && notes.map(note => {
+            return <Card deleteNote={() => deleteNote(note.id)} key={note.id} title={note.title} desc={note.desc} />
+          })}
+          {notes.length === 0 && <div className="no-notes"><p className='no-notes'>No Notes Found</p></div>}
+        </div>
       </section>
+
+      <div className='footer-spacer'></div>
+
+      <Footer/>
     </>
   )
 }
