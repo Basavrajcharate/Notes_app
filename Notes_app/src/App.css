@@ -19,6 +19,38 @@ nav ul li{
   font-weight: bold;
 }
 
-lablel{
+label{
   display: block;
+}
+
+form{
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(rgb(164, 164, 164));
+}
+h2{
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+input[type="text"]{
+
+  width: 30vw;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+textarea{
+  width: 30vw;
+  height: 100px;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
 }
