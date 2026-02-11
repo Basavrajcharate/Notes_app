@@ -156,4 +156,11 @@ textarea{
   width: 100%;
   bottom: 0;
   font-weight: bold;
+
+}
+.footer a{
+  text-decoration: #000000;
+  color:  black;
+
+
 }
