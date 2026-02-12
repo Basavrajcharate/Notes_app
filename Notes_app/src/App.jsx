@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
 import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Login from '../components/login'
 
 function App() {
   const [notes, setNotes] = useState([])
@@ -57,38 +59,48 @@ function App() {
   return (
     <>
       <Navbar />
-      <main>
-        <h1>Welcome to NoteX</h1>
-        <div className='hedding'><h2>Create your Note</h2></div>
-        
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <main>
+                <h1>Welcome to NoteX</h1>
+                <div className='hedding'><h2>Create your Note</h2></div>
 
-        <form  onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="title">Title </label>
 
-            <input value={currentNote.title} onChange={handleChange} type="text" placeholder='Title' name="title" id="title" />
-          </div>
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <label htmlFor="title">Title </label>
 
-          <div>
-            <label htmlFor="desc">Discription</label>
-            <textarea value={currentNote.desc} onChange={handleChange} name="desc" id="desc" placeholder='Discription'></textarea>
-          </div>
-          <button type='submit'>Create Note</button>
-        </form>
-      </main>
-      <section>
-        <div className='hedding'><h2>Your Notes</h2></div>
-        <div className='notes-container'>
-          {notes && notes.map(note => {
-            return <Card deleteNote={() => deleteNote(note.id)} key={note.id} title={note.title} desc={note.desc} />
-          })}
-          {notes.length === 0 && <div className="no-notes"><p className='no-notes'>No Notes Found</p></div>}
-        </div>
-      </section>
+                    <input value={currentNote.title} onChange={handleChange} type="text" placeholder='Title' name="title" id="title" />
+                  </div>
 
-      <div className='footer-spacer'></div>
+                  <div>
+                    <label htmlFor="desc">Discription</label>
+                    <textarea value={currentNote.desc} onChange={handleChange} name="desc" id="desc" placeholder='Discription'></textarea>
+                  </div>
+                  <button type='submit'>Create Note</button>
+                </form>
+              </main>
+              <section>
+                <div className='hedding'><h2>Your Notes</h2></div>
+                <div className='notes-container'>
+                  {notes && notes.map(note => {
+                    return <Card deleteNote={() => deleteNote(note.id)} key={note.id} title={note.title} desc={note.desc} />
+                  })}
+                  {notes.length === 0 && <div className="no-notes"><p className='no-notes'>No Notes Found</p></div>}
+                </div>
+              </section>
 
-      <Footer/>
+              <div className='footer-spacer'></div>
+
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
     </>
   )
 }
