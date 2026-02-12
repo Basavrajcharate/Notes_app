@@ -1,4 +1,5 @@
 import React from 'react'
+import login from './login'
 
 const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar = () => {
             <li>About</li>
             <li>Contact</li>
             <li>Services</li>
-            <li>Login</li>
+            <li><a href="login.jsx">Login</a></li>
         </ul>
     </nav>
   )
