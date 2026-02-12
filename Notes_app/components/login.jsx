@@ -1,7 +1,11 @@
 import React from 'react'
+import './Login.css'
+import Footer from './Footer'
 
 const Login = () => {
   return (
+    <>
+    <section>
     <div className="login-container">
       <div className="login-form">
         <h2>Login</h2>
@@ -18,6 +22,9 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </section>
+    <Footer />
+    </>
   )
 }
 
